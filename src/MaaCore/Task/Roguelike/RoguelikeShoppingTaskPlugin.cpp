@@ -20,14 +20,9 @@ bool asst::RoguelikeShoppingTaskPlugin::verify(AsstMsg msg, const json::value& d
         Log.error("Roguelike name doesn't exist!");
         return false;
     }
-    const std::string roguelike_name = m_config->get_theme() + "@";
-    const std::string& task = details.get("details", "task", "");
-    std::string_view task_view = task;
-    if (task_view.starts_with(roguelike_name)) {
-        task_view.remove_prefix(roguelike_name.length());
-    }
-    if (task_view == "Roguelike@TraderRandomShopping") {
-        return true;
+
+    if (details.get("details", "task", "").ends_with("Roguelike@TraderRandomShopping")) {
+        return m_config->get_mode() != RoguelikeMode::Investment || m_config->get_invest_with_more_score();
     }
     else {
         return false;
@@ -38,10 +33,9 @@ bool asst::RoguelikeShoppingTaskPlugin::_run()
 {
     LogTraceFunction;
 
-    OCRer analyzer;
-    analyzer.set_task_info("RoguelikeTraderShoppingOcr");
     auto image = ctrler()->get_image();
-    analyzer.set_image(image);
+    OCRer analyzer(image);
+    analyzer.set_task_info("RoguelikeTraderShoppingOcr");
     if (!analyzer.analyze()) {
         return false;
     }
@@ -100,7 +94,7 @@ bool asst::RoguelikeShoppingTaskPlugin::_run()
         }
     }
 
-    bool bought = false;
+    //bool bought = false;
     auto& all_goods = RoguelikeShopping.get_goods(m_config->get_theme());
     std::vector<std::string> all_foldartal = m_config->get_theme() == RoguelikeTheme::Sami
                                                  ? Task.get<OcrTaskInfo>("Sami@Roguelike@FoldartalGainOcr")->text
@@ -166,7 +160,7 @@ bool asst::RoguelikeShoppingTaskPlugin::_run()
         // 然后继续走 next 里确认 or 取消等等的逻辑
         Log.info("Ready to buy", goods.name);
         ctrler()->click(find_it->rect);
-        bought = true;
+        //bought = true;
         if (m_config->get_theme() == RoguelikeTheme::Sami) {
 
             auto iter = std::find(all_foldartal.begin(), all_foldartal.end(), goods.name);
@@ -182,11 +176,11 @@ bool asst::RoguelikeShoppingTaskPlugin::_run()
         }
         break;
     }
-
+    /*
     if (!bought) {
         // 如果什么都没买，即使有商品，说明也是不需要买的，这里强制离开商店，后面让 ProcessTask 继续跑
         return ProcessTask(*this, { "RoguelikeTraderShoppingOver" }).run();
     }
-
+    */
     return true;
 }

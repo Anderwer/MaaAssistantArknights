@@ -65,7 +65,7 @@ jobs:
           PUSH_REMOTE: https://github-actions[bot]:${{ secrets.MAARELEASE_RELEASE }}@github.com/${{ github.repository_owner }}/MaaRelease
 
       - name: Upload release config to GitHub
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MaaReleaseConfig
           path: ./build-ota/config
@@ -83,7 +83,7 @@ jobs:
           - x64
     steps:
       - name: Download release config
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Fetch MaaRelease
         uses: actions/checkout@v3
@@ -222,7 +222,7 @@ jobs:
           if [ -n "$DOCS_DIFF" ]; then
             echo "Found changes, start to deploy the docs:"
             echo "$DOCS_DIFF"
-            gh workflow --repo MaaAssistantArknights/maa-website run azure-deploy.yaml
+            gh workflow --repo MaaAssistantArknights/maa-website run build-and-deploy.yaml
             echo "Deploying the docs."
           else
             echo "Nothing changed, exit."

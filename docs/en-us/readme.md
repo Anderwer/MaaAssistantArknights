@@ -37,7 +37,7 @@ Development in progress  ✿✿ヽ(°▽°)ノ✿<br>
 
 - Auto-battle, drop items recognition, auto-uploading to [Penguin Stats](https://penguin-stats.io/).
 - Auto-shifting in the Base, auto efficiency calculation of operators, optimal solution in single room.
-- Auto-recruitment, support for expedited plan. Auto-uploading recruitment data to [Penguin Stats](https://penguin-stats.io/result/stage/recruit/recruit), [Yituliu](https://yituliu.site/maarecruitdata).
+- Auto-recruitment, support for expedited plan. Auto-uploading recruitment data to [Penguin Stats](https://penguin-stats.io/result/stage/recruit/recruit), [Yituliu](https://ark.yituliu.cn/survey/maarecruitdata).
 - Visiting friends, collecting credits and purchasing items, collecting daily rewards, completing daily quests in one click!
 - Auto-battle for Integrated Strategy (I.S.) for collecting originium ingots and candles.
 - Importing JSON task file for auto-battle! [Video](https://www.bilibili.com/video/BV1H841177Fk/)
@@ -59,7 +59,7 @@ Talk is cheap. Show me the pictures!<br>
 ### Basic Settings
 
 1. Please refer to [Emulator Supports](./1.3-EMULATOR_SUPPORTS.md) to configure your emulator.
-2. Change your emulator resolution to `1280 * 720` or higher with `16:9` aspect ratio.<br>
+2. Change your emulator resolution to `1280 * 720` or higher, the maximum is `2K`, with `16:9` aspect ratio.<br>
    For YostarEN, due to game interfaces issues, we recommend changing the resolution to `1920 * 1080`.
 3. Enjoy it!
 

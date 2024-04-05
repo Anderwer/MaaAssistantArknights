@@ -150,8 +150,11 @@ bool asst::RoguelikeBattleTaskPlugin::calc_stage_info()
             }
             calced = true;
             m_stage_name = text;
-            m_normal_tile_info = Tile.calc(stage_key, false);
-            m_side_tile_info = Tile.calc(stage_key, true);
+            auto calc_result = Tile.calc(stage_key);
+            m_normal_tile_info = std::move(calc_result.normal_tile_info);
+            m_side_tile_info = std::move(calc_result.side_tile_info);
+            m_retreat_button_pos = calc_result.retreat_button;
+            m_skill_button_pos = calc_result.skill_button;
             break;
         }
 
@@ -412,8 +415,8 @@ bool asst::RoguelikeBattleTaskPlugin::do_once()
     check_drone_tiles();
 
     cv::Mat image = ctrler()->get_image();
-    if (!m_first_deploy && use_all_ready_skill(image)) {
-        return true;
+    if (!m_first_deploy) {
+        use_all_ready_skill(image);
     }
 
     std::unordered_set<std::string> pre_cooling;
@@ -463,6 +466,7 @@ bool asst::RoguelikeBattleTaskPlugin::do_once()
         m_first_deploy = false;
         return true;
     }
+
     else { // 这是旧的、通用部署逻辑
         auto urgent_home_opt = check_urgent(pre_cooling, cur_cooling, pre_battlefield);
 
@@ -589,9 +593,9 @@ void asst::RoguelikeBattleTaskPlugin::postproc_of_deployment_conditions(const ba
     }
 }
 
+// 将存在于场上超过限时的召唤物所在的地块重新设为可用
 void asst::RoguelikeBattleTaskPlugin::check_drone_tiles()
 {
-    // 将存在于场上超过限时的召唤物所在的地块重新设为可用
     Time_Point now_time = std::chrono::system_clock::now();
     while ((!m_need_clear_tiles.empty()) && m_need_clear_tiles.top().placed_time < now_time) {
         const auto& placed_loc = m_need_clear_tiles.top().placed_loc;

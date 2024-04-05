@@ -77,6 +77,7 @@ namespace MaaWpfGui.ViewModels.UI
 
         private static string PadRightEx(string str, int totalByteCount)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             Encoding coding = Encoding.GetEncoding("gb2312");
             int count = str.ToCharArray().Count(ch => coding.GetByteCount(ch.ToString()) == 2);
 
@@ -610,7 +611,7 @@ namespace MaaWpfGui.ViewModels.UI
                 "ja-jp" => "name_jp",
                 "ko-kr" => "name_kr",
                 "zh-tw" => "name_tw",
-                _ => "name_en"
+                _ => "name_en",
             };
 
             foreach (JObject operBox in operBoxes.Cast<JObject>())
@@ -830,7 +831,12 @@ namespace MaaWpfGui.ViewModels.UI
             }
         }
 
-        private bool _gachaShowDisclaimer = !Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.GachaShowDisclaimerNoMore, bool.FalseString));
+        // DO NOT CHANGE
+        // 请勿更改
+        // 請勿更改
+        // このコードを変更しないでください
+        // 변경하지 마십시오
+        private bool _gachaShowDisclaimer = true; // !Convert.ToBoolean(ConfigurationHelper.GetValue(ConfigurationKeys.ShowDisclaimerNoMore, bool.FalseString));
 
         public bool GachaShowDisclaimer
         {
@@ -857,6 +863,19 @@ namespace MaaWpfGui.ViewModels.UI
         // ReSharper disable once UnusedMember.Global
         public void GachaAgreeDisclaimer()
         {
+            var result = MessageBoxHelper.Show(
+                LocalizationHelper.GetString("GachaWarning"),
+                LocalizationHelper.GetString("Warning"),
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning,
+                no: LocalizationHelper.GetString("Confirm"),
+                yes: LocalizationHelper.GetString("Cancel"),
+                iconBrushKey: "DangerBrush");
+            if (result != MessageBoxResult.No)
+            {
+                return;
+            }
+
             GachaShowDisclaimer = false;
         }
 

@@ -42,6 +42,10 @@ namespace MaaWpfGui.Constants
         public const string CustomStageCode = "GUI.CustomStageCode";
         public const string InverseClearMode = "GUI.InverseClearMode";
         public const string WindowTitlePrefix = "GUI.WindowTitlePrefix";
+        public const string SoberLanguage = "GUI.SoberLanguage";
+        public const string Cheers = "GUI.Cheers";
+        public const string Hangover = "GUI.Hangover";
+        public const string LastBuyWineTime = "GUI.LastBuyWineTime";
 
         public const string AddressHistory = "Connect.AddressHistory";
         public const string AutoDetect = "Connect.AutoDetect";
@@ -83,6 +87,7 @@ namespace MaaWpfGui.Constants
 
         public const string DormThreshold = "Infrast.DormThreshold";
         public const string UsesOfDrones = "Infrast.UsesOfDrones";
+        public const string ContinueTraining = "Infrast.ContinueTraining";
         public const string DefaultInfrast = "Infrast.DefaultInfrast";
         public const string IsCustomInfrastFileReadOnly = "Infrast.IsCustomInfrastFileReadOnly";
         public const string DormFilterNotStationedEnabled = "Infrast.DormFilterNotStationedEnabled";
@@ -103,6 +108,11 @@ namespace MaaWpfGui.Constants
         public const string RoguelikeRoles = "Roguelike.Roles";
         public const string RoguelikeCoreChar = "Roguelike.CoreChar";
         public const string RoguelikeStartWithEliteTwo = "Roguelike.RoguelikeStartWithEliteTwo";
+        public const string RoguelikeOnlyStartWithEliteTwo = "Roguelike.RoguelikeOnlyStartWithEliteTwo";
+        public const string Roguelike3FirstFloorFoldartal = "Roguelike.Roguelike3FirstFloorFoldartal";
+        public const string Roguelike3StartFloorFoldartal = "Roguelike.Roguelike3StartFloorFoldartal";
+        public const string Roguelike3NewSquad2StartingFoldartal = "Roguelike.Roguelike3NewSquad2StartingFoldartal";
+        public const string Roguelike3NewSquad2StartingFoldartals = "Roguelike.Roguelike3NewSquad2StartingFoldartals";
         public const string RoguelikeUseSupportUnit = "Roguelike.RoguelikeUseSupportUnit";
         public const string RoguelikeEnableNonfriendSupport = "Roguelike.RoguelikeEnableNonfriendSupport";
         public const string RoguelikeDelayAbortUntilCombatComplete = "Roguelike.RoguelikeDelayAbortUntilCombatComplete";
@@ -129,13 +139,18 @@ namespace MaaWpfGui.Constants
         public const string RecruitChooseLevel4 = "AutoRecruit.ChooseLevel4";
         public const string RecruitChooseLevel5 = "AutoRecruit.ChooseLevel5";
 
+        public const string CreditVisitFriends = "Mall.CreditVisitFriends";
         public const string CreditShopping = "Mall.CreditShopping";
         public const string CreditFirstListNew = "Mall.CreditFirstListNew";
         public const string CreditBlackListNew = "Mall.CreditBlackListNew";
         public const string CreditForceShoppingIfCreditFull = "Mall.CreditForceShoppingIfCreditFull";
+        public const string CreditOnlyBuyDiscount = "Mall.CreditOnlyBuyDiscount";
+        public const string CreditReserveMaxCredit = "Mall.CreidtReserveMaxCredit";
 
         public const string ReceiveAward = "Mission.ReceiveAward";
         public const string ReceiveMail = "Mission.ReceiveMail";
+        public const string ReceiveFreeRecruit = "Mission.ReceiveFreeRecruit";
+        public const string ReceiveOrundum = "Mission.ReceiveOrundum";
 
         public const string CopilotAddUserAdditional = "Copilot.AddUserAdditional";
         public const string CopilotUserAdditional = "Copilot.UserAdditional";
@@ -175,6 +190,7 @@ namespace MaaWpfGui.Constants
         public const string UseStoneQuantity = "MainFunction.UseStone.Quantity";
         public const string TimesLimited = "MainFunction.TimesLimited";
         public const string TimesLimitedQuantity = "MainFunction.TimesLimited.Quantity";
+        public const string SeriesQuantity = "MainFunction.Series.Quantity";
         public const string DropsEnable = "MainFunction.Drops.Enable";
         public const string DropsItemId = "MainFunction.Drops.ItemId";
         public const string DropsItemName = "MainFunction.Drops.ItemName";
@@ -195,6 +211,12 @@ namespace MaaWpfGui.Constants
         public const string ExternalNotificationSmtpFrom = "ExternalNotification.Smtp.From";
         public const string ExternalNotificationSmtpTo = "ExternalNotification.Smtp.To";
         public const string ExternalNotificationServerChanSendKey = "ExternalNotification.ServerChan.SendKey";
+        public const string ExternalNotificationDiscordBotToken = "ExternalNotification.Discord.BotToken";
+        public const string ExternalNotificationDiscordUserId = "ExternalNotification.Discord.UserId";
+        public const string ExternalNotificationTelegramBotToken = "ExternalNotification.Telegram.BotToken";
+        public const string ExternalNotificationTelegramChatId = "ExternalNotification.Telegram.ChatId";
+        public const string ExternalNotificationBarkSendKey = "ExternalNotification.Bark.SendKey";
+        public const string ExternalNotificationBarkServer = "ExternalNotification.Bark.Server";
 
         // The following should not be modified manually
         public const string VersionName = "VersionUpdate.name";
@@ -210,6 +232,7 @@ namespace MaaWpfGui.Constants
         public const string GuideStepIndex = "Guide.StepIndex";
 
         public const string ForceScheduledStart = "Timer.ForceScheduledStart";
+        public const string ShowWindowBeforeForceScheduledStart = "Timer.ShowWindowBeforeForceScheduledStart";
         public const string CustomConfig = "Timer.CustomConfig";
 
         public const string AnnouncementInfo = "Announcement.AnnouncementInfo";

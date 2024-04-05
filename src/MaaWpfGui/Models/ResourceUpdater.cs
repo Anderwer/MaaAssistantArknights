@@ -10,6 +10,7 @@
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY
 // </copyright>
+#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using MaaWpfGui.Constants;
 using MaaWpfGui.Helper;
+using MaaWpfGui.Main;
 using MaaWpfGui.ViewModels;
 using Stylet;
 
@@ -183,6 +185,10 @@ namespace MaaWpfGui.Models
                 File.Copy(tmp, version, true);
                 File.Delete(tmp);
             }
+            else
+            {
+                return;
+            }
 
             ETagCache.Set(_versionUrl, _versionEtag);
         }
@@ -221,6 +227,13 @@ namespace MaaWpfGui.Models
             if (ret1 == UpdateResult.Success || ret2 == UpdateResult.Success)
             {
                 OutputDownloadProgress(LocalizationHelper.GetString("GameResourceUpdated"));
+
+                // 现在用的和自动安装服更新包一个逻辑，看看有没有必要分开
+                if (Instances.SettingsViewModel.AutoInstallUpdatePackage)
+                {
+                    await Bootstrapper.RestartAfterIdleAsync();
+                }
+
                 return UpdateResult.Success;
             }
 
@@ -308,7 +321,7 @@ namespace MaaWpfGui.Models
             return ret;
         }
 
-        private static UpdateResult ResponseToUpdateResult(HttpResponseMessage response)
+        private static UpdateResult ResponseToUpdateResult(HttpResponseMessage? response)
         {
             if (response == null)
             {
@@ -358,7 +371,7 @@ namespace MaaWpfGui.Models
             return updateResult;
         }
 
-        private static ObservableCollection<LogItemViewModel> _logItemViewModels;
+        private static ObservableCollection<LogItemViewModel> _logItemViewModels = [];
 
         private static void OutputDownloadProgress(int index, int count = 0, int maxCount = 1)
         {
